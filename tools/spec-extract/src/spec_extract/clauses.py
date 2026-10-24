@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2026 Starion Group S.A.
+# SPDX-License-Identifier: Apache-2.0
+
 """Stage 3: skip the Table of Contents, then detect clause headings.
 
 The Table of Contents (see `toc.py`) is both skipped and used. Its numbered entries are the

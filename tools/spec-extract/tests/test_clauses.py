@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2026 Starion Group S.A.
+# SPDX-License-Identifier: Apache-2.0
+
 from spec_extract.clauses import detect_clauses, detect_clauses_and_toc
 from spec_extract.models import Line, PositionedWord, ReconstructedPage, clause_number_key
 from spec_extract.normative import split_normative

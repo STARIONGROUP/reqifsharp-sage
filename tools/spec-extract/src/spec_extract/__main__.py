@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2026 Starion Group S.A.
+# SPDX-License-Identifier: Apache-2.0
+
 """Thin, non-interactive entry point so the `reqifsharp-sage` C# CLI can invoke this pipeline.
 
     python -m spec_extract extract --pdf <path-to-pdf> --out <output-dir> [--document ReqIF] [--version 1.2]

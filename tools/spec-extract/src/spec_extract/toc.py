@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2026 Starion Group S.A.
+# SPDX-License-Identifier: Apache-2.0
+
 """Find and parse the Table of Contents.
 
 The Table of Contents is located either from a document profile's page range or by its structure:

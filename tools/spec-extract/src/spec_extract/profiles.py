@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2026 Starion Group S.A.
+# SPDX-License-Identifier: Apache-2.0
+
 """Per-document formatting and licensing profiles, keyed by the `--document` name.
 
 The pipeline stages are generic; what differs between the documents this package extracts is kept

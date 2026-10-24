@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2026 Starion Group S.A.
+# SPDX-License-Identifier: Apache-2.0
+
 from spec_extract.models import Line, PositionedWord, ReconstructedPage
 from spec_extract.toc import find_toc_page_span, parse_toc_entries
 

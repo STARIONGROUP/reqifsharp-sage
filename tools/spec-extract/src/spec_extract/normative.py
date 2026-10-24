@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2026 Starion Group S.A.
+# SPDX-License-Identifier: Apache-2.0
+
 """Stage 4: group a clause's raw lines into paragraphs and split normative from informative.
 
 Paragraphs are separated by a vertical gap visibly larger than the document's line spacing, and

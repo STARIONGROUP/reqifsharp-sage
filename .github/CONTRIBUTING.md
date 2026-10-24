@@ -36,7 +36,7 @@ python -m venv .venv && .venv/Scripts/pip install -e ".[dev]"
 
 ## Style
 
-Follow the conventions in `CLAUDE.md` (also enforced by `.editorconfig`): an Apache 2.0 header on
+Follow the conventions in `CLAUDE.md` (also enforced by `.editorconfig`): an SPDX (Apache-2.0) header on
 every `.cs` file, `this.`, braces everywhere, `using`s inside the namespace, and XML docs on public
 members.
 

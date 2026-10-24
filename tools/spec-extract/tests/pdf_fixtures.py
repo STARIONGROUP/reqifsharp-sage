@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2026 Starion Group S.A.
+# SPDX-License-Identifier: Apache-2.0
+
 """Minimal, hand-written (not derived from any real specification) PDF builders for the tests.
 
 Avoids pulling in a PDF-generation dependency just to test PDF *reading*: this writes the smallest

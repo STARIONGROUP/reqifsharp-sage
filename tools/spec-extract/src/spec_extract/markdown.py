@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2026 Starion Group S.A.
+# SPDX-License-Identifier: Apache-2.0
+
 """Stage 5: render one clause to a markdown file with YAML front matter."""
 
 from __future__ import annotations

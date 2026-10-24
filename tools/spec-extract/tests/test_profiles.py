@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2026 Starion Group S.A.
+# SPDX-License-Identifier: Apache-2.0
+
 import pytest
 
 from spec_extract.profiles import GENERIC_PROFILE, profile_for

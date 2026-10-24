@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2026 Starion Group S.A.
+# SPDX-License-Identifier: Apache-2.0
+
 """Stage 1: raw positioned words and ruled tables per page. No layout logic lives here."""
 
 from __future__ import annotations

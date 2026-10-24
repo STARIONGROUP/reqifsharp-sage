@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2026 Starion Group S.A.
+# SPDX-License-Identifier: Apache-2.0
+
 """Stage 6: orchestrate stages 1-5 across a whole PDF and write the knowledge-base output.
 
 Output layout (matches the reqifsharp-sage knowledge base convention):

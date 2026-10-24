@@ -110,7 +110,8 @@ These match the sibling uml4net-sage and reqifsharp repositories:
 - Always use braces; no `#region`.
 - `using` statements go inside the namespace, `System.*` first.
 - XML docs on every public member; one public type per file (small related records may share one).
-- Apache 2.0 copyright header on every `.cs` file. Copy it from an existing file.
+- SPDX copyright header on every `.cs` file (`SPDX-FileCopyrightText: <year> Starion Group S.A.` and
+  `SPDX-License-Identifier: Apache-2.0` inside the `<copyright>` block). Copy it from an existing file.
 - Docs use a spaced en dash (–) or a hyphen, not an em dash.
 - Branches: the default branch is `development`, with feature branches off it and PRs back into
   it. Never commit directly to `master`. Ask before committing or pushing.

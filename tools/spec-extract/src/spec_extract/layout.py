@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2026 Starion Group S.A.
+# SPDX-License-Identifier: Apache-2.0
+
 """Stage 2: reconstruct reading order and strip running headers/footers.
 
 A running header or footer is recognised two ways, both only inside a band at the top or bottom of
