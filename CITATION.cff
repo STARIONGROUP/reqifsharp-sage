@@ -1,0 +1,27 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+
+title: "reqifsharp-sage"
+abstract: "Sage is the AI agent of the reqifsharp ecosystem: grounded knowledge of the OMG Requirements Interchange Format (ReqIF) 1.2 and the reqifsharp C# library, packaged as a Claude Code plugin with skills for metamodel and schema lookup, specification citation, API lookup and ReqIF file inspection."
+version: "0.1.0"
+url: "https://github.com/STARIONGROUP/reqifsharp-sage"
+
+authors:
+  - given-names: "Sam"
+    family-names: "Gerené"
+    affiliation: "Starion Group S.A."
+    orcid: "https://orcid.org/0009-0000-1848-550X"
+
+repository-code: "https://github.com/STARIONGROUP/reqifsharp-sage"
+license: "Apache-2.0"
+
+preferred-citation:
+  type: software
+  title: "reqifsharp-sage"
+  authors:
+    - given-names: "Sam"
+      family-names: "Gerené"
+      orcid: "https://orcid.org/0009-0000-1848-550X"
+  version: "0.1.0"
+  url: "https://github.com/STARIONGROUP/reqifsharp-sage"
+  

@@ -1,0 +1,97 @@
+name: Build hook binaries
+
+# Builds the NativeAOT SessionStart hook for the published runtime identifiers and commits the
+# resulting binaries into hooks/native/. Manually triggered by a maintainer preparing a release -
+# see hooks/native/README.md.
+#
+# osx-x64 is deliberately not built here: GitHub's macos-13 hosted runner (the last Intel-Mac image)
+# queued indefinitely (10+ minutes, never started) as of 2026-09 - consistent with GitHub retiring
+# Intel Mac runners in favor of Apple Silicon. Revisit if/when a hosted Intel-Mac image is available
+# again, or self-host one.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        include:
+          - rid: win-x64
+            os: windows-latest
+          - rid: linux-x64
+            os: ubuntu-latest
+          - rid: osx-arm64
+            os: macos-latest
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "10.0.x"
+
+      - name: Publish (NativeAOT)
+        run: >
+          dotnet publish tools/sage-cli/ReqIFSharp.Sage.Tools.Hook
+          -r ${{ matrix.rid }} -c Release --self-contained
+          -p:PublishAot=true -p:DebugType=none
+          -o hooks/native/${{ matrix.rid }}
+
+      - name: Remove native debug-symbol bundles
+        # -p:DebugType=none only suppresses managed PDBs; NativeAOT's own native-symbol stripping
+        # (dsymutil on macOS, objcopy on Linux) writes a separate .dSYM bundle / .dbg file
+        # regardless, which is unnecessary bloat for a plugin repo end users clone/download (a
+        # macOS .dSYM was ~14MB - see git history for the same issue recurring). Removed
+        # unconditionally rather than chasing the exact MSBuild property, since none reliably
+        # suppressed generation across both platforms.
+        shell: bash
+        run: rm -rf hooks/native/${{ matrix.rid }}/*.dSYM hooks/native/${{ matrix.rid }}/*.dbg hooks/native/${{ matrix.rid }}/*.pdb
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: hook-${{ matrix.rid }}
+          path: hooks/native/${{ matrix.rid }}/reqifsharp-sage-hook*
+
+  commit:
+    # Commits the rebuilt hook binaries.
+    permissions:
+      contents: write
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download all binaries
+        uses: actions/download-artifact@v4
+        with:
+          pattern: hook-*
+          path: hooks/native
+          merge-multiple: false
+
+      - name: Flatten artifact directories into hooks/native/<rid>/
+        run: |
+          for dir in hooks/native/hook-*; do
+            rid="${dir#hooks/native/hook-}"
+            mkdir -p "hooks/native/$rid"
+            mv "$dir"/* "hooks/native/$rid"/
+            rmdir "$dir"
+          done
+
+      - name: Mark non-Windows binaries executable
+        run: |
+          chmod +x hooks/native/linux-x64/reqifsharp-sage-hook
+          chmod +x hooks/native/osx-arm64/reqifsharp-sage-hook
+
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add hooks/native
+          git diff --cached --quiet || git commit -m "Update hook binaries"
+          git push

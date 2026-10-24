@@ -1,0 +1,8 @@
+{
+  "reqifVersions": [
+    { "version": "1.2", "current": true, "omgDocumentId": "formal/16-07-01" }
+  ],
+  "guideVersions": [
+    { "version": "1.7", "title": "prostep ivip ReqIF Implementation Guide", "releaseDate": "2019-12-16", "public": false }
+  ]
+}

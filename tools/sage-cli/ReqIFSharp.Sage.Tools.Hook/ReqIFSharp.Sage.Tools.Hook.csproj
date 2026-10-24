@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <!-- Deliberately dependency-free (see CLAUDE.md): this binary is committed to the plugin repo and
+         must stay small and NativeAOT-publishable. It only provisions/launches the full CLI; it never
+         parses ReqIF, CMOF or PDFs itself. -->
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <PublishAot>true</PublishAot>
+    <InvariantGlobalization>true</InvariantGlobalization>
+    <RootNamespace>ReqIFSharp.Sage.Tools.Hook</RootNamespace>
+    <AssemblyName>reqifsharp-sage-hook</AssemblyName>
+  </PropertyGroup>
+
+</Project>

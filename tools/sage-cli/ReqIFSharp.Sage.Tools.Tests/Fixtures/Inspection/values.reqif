@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Toy fixture: attribute value and datatype defects (rules R-008 to R-019). reqifsharp cannot deserialize it (LOAD). -->
+<REQ-IF xmlns="http://www.omg.org/spec/ReqIF/20110401/reqif.xsd">
+  <THE-HEADER>
+    <REQ-IF-HEADER IDENTIFIER="header-kettle">
+      <CREATION-TIME>2026-02-01T08:00:00Z</CREATION-TIME>
+      <REQ-IF-TOOL-ID>toy exporter 1.0</REQ-IF-TOOL-ID>
+      <REQ-IF-VERSION>1.0</REQ-IF-VERSION>
+      <SOURCE-TOOL-ID>toy authoring tool 1.0</SOURCE-TOOL-ID>
+      <TITLE>Kettle requirements</TITLE>
+    </REQ-IF-HEADER>
+  </THE-HEADER>
+  <CORE-CONTENT>
+    <REQ-IF-CONTENT>
+      <DATATYPES>
+        <DATATYPE-DEFINITION-STRING IDENTIFIER="dt-short-string" LAST-CHANGE="2026-02-01T08:00:00Z" LONG-NAME="T_Short" MAX-LENGTH="5"/>
+        <DATATYPE-DEFINITION-INTEGER IDENTIFIER="dt-litres" LAST-CHANGE="2026-02-01T08:00:00Z" LONG-NAME="T_Litres" MIN="0" MAX="10"/>
+        <DATATYPE-DEFINITION-INTEGER IDENTIFIER="dt-inverted" LAST-CHANGE="2026-02-01T08:00:00Z" LONG-NAME="T_Inverted" MIN="10" MAX="0"/>
+        <DATATYPE-DEFINITION-REAL IDENTIFIER="dt-ratio" LAST-CHANGE="2026-02-01T08:00:00Z" LONG-NAME="T_Ratio" ACCURACY="1" MIN="0.0" MAX="1.0"/>
+        <DATATYPE-DEFINITION-ENUMERATION IDENTIFIER="dt-colour" LAST-CHANGE="2026-02-01T08:00:00Z" LONG-NAME="T_Colour">
+          <SPECIFIED-VALUES>
+            <ENUM-VALUE IDENTIFIER="ev-red" LAST-CHANGE="2026-02-01T08:00:00Z" LONG-NAME="red">
+              <PROPERTIES>
+                <EMBEDDED-VALUE KEY="1" OTHER-CONTENT="red"/>
+              </PROPERTIES>
+            </ENUM-VALUE>
+            <ENUM-VALUE IDENTIFIER="ev-green" LAST-CHANGE="2026-02-01T08:00:00Z" LONG-NAME="green">
+              <PROPERTIES>
+                <EMBEDDED-VALUE KEY="2" OTHER-CONTENT="green"/>
+              </PROPERTIES>
+            </ENUM-VALUE>
+          </SPECIFIED-VALUES>
+        </DATATYPE-DEFINITION-ENUMERATION>
+        <DATATYPE-DEFINITION-ENUMERATION IDENTIFIER="dt-size" LAST-CHANGE="2026-02-01T08:00:00Z" LONG-NAME="T_Size">
+          <SPECIFIED-VALUES>
+            <ENUM-VALUE IDENTIFIER="ev-small" LAST-CHANGE="2026-02-01T08:00:00Z" LONG-NAME="small">
+              <PROPERTIES>
+                <EMBEDDED-VALUE KEY="1" OTHER-CONTENT="small"/>
+              </PROPERTIES>
+            </ENUM-VALUE>
+          </SPECIFIED-VALUES>
+        </DATATYPE-DEFINITION-ENUMERATION>
+      </DATATYPES>
+      <SPEC-TYPES>
+        <SPEC-OBJECT-TYPE IDENTIFIER="type-requirement" LAST-CHANGE="2026-02-01T08:00:00Z" LONG-NAME="Requirement">
+          <SPEC-ATTRIBUTES>
+            <ATTRIBUTE-DEFINITION-STRING IDENTIFIER="ad-code" LAST-CHANGE="2026-02-01T08:00:00Z" LONG-NAME="Code">
+              <TYPE>
+                <DATATYPE-DEFINITION-STRING-REF>dt-short-string</DATATYPE-DEFINITION-STRING-REF>
+              </TYPE>
+            </ATTRIBUTE-DEFINITION-STRING>
+            <ATTRIBUTE-DEFINITION-INTEGER IDENTIFIER="ad-capacity" LAST-CHANGE="2026-02-01T08:00:00Z" LONG-NAME="Capacity">
+              <TYPE>
+                <DATATYPE-DEFINITION-INTEGER-REF>dt-litres</DATATYPE-DEFINITION-INTEGER-REF>
+              </TYPE>
+            </ATTRIBUTE-DEFINITION-INTEGER>
+            <ATTRIBUTE-DEFINITION-REAL IDENTIFIER="ad-fill-ratio" LAST-CHANGE="2026-02-01T08:00:00Z" LONG-NAME="Fill ratio">
+              <TYPE>
+                <DATATYPE-DEFINITION-REAL-REF>dt-ratio</DATATYPE-DEFINITION-REAL-REF>
+              </TYPE>
+            </ATTRIBUTE-DEFINITION-REAL>
+            <ATTRIBUTE-DEFINITION-ENUMERATION IDENTIFIER="ad-colour" LAST-CHANGE="2026-02-01T08:00:00Z" LONG-NAME="Colour" MULTI-VALUED="false">
+              <TYPE>
+                <DATATYPE-DEFINITION-ENUMERATION-REF>dt-colour</DATATYPE-DEFINITION-ENUMERATION-REF>
+              </TYPE>
+            </ATTRIBUTE-DEFINITION-ENUMERATION>
+            <ATTRIBUTE-DEFINITION-STRING IDENTIFIER="ad-wrong-datatype" LAST-CHANGE="2026-02-01T08:00:00Z" LONG-NAME="Wrong datatype">
+              <TYPE>
+                <DATATYPE-DEFINITION-STRING-REF>dt-litres</DATATYPE-DEFINITION-STRING-REF>
+              </TYPE>
+            </ATTRIBUTE-DEFINITION-STRING>
+            <ATTRIBUTE-DEFINITION-INTEGER IDENTIFIER="ad-default-kind" LAST-CHANGE="2026-02-01T08:00:00Z" LONG-NAME="Default of the wrong kind">
+              <DEFAULT-VALUE>
+                <ATTRIBUTE-VALUE-STRING THE-VALUE="three">
+                  <DEFINITION>
+                    <ATTRIBUTE-DEFINITION-STRING-REF>ad-code</ATTRIBUTE-DEFINITION-STRING-REF>
+                  </DEFINITION>
+                </ATTRIBUTE-VALUE-STRING>
+              </DEFAULT-VALUE>
+              <TYPE>
+                <DATATYPE-DEFINITION-INTEGER-REF>dt-litres</DATATYPE-DEFINITION-INTEGER-REF>
+              </TYPE>
+            </ATTRIBUTE-DEFINITION-INTEGER>
+            <ATTRIBUTE-DEFINITION-INTEGER IDENTIFIER="ad-default-elsewhere" LAST-CHANGE="2026-02-01T08:00:00Z" LONG-NAME="Default of another definition">
+              <DEFAULT-VALUE>
+                <ATTRIBUTE-VALUE-INTEGER THE-VALUE="20">
+                  <DEFINITION>
+                    <ATTRIBUTE-DEFINITION-INTEGER-REF>ad-capacity</ATTRIBUTE-DEFINITION-INTEGER-REF>
+                  </DEFINITION>
+                </ATTRIBUTE-VALUE-INTEGER>
+              </DEFAULT-VALUE>
+              <TYPE>
+                <DATATYPE-DEFINITION-INTEGER-REF>dt-litres</DATATYPE-DEFINITION-INTEGER-REF>
+              </TYPE>
+            </ATTRIBUTE-DEFINITION-INTEGER>
+            <ATTRIBUTE-DEFINITION-INTEGER IDENTIFIER="ad-inverted" LAST-CHANGE="2026-02-01T08:00:00Z" LONG-NAME="Inverted">
+              <TYPE>
+                <DATATYPE-DEFINITION-INTEGER-REF>dt-inverted</DATATYPE-DEFINITION-INTEGER-REF>
+              </TYPE>
+            </ATTRIBUTE-DEFINITION-INTEGER>
+          </SPEC-ATTRIBUTES>
+        </SPEC-OBJECT-TYPE>
+        <SPEC-OBJECT-TYPE IDENTIFIER="type-other" LAST-CHANGE="2026-02-01T08:00:00Z" LONG-NAME="Other">
+          <SPEC-ATTRIBUTES>
+            <ATTRIBUTE-DEFINITION-STRING IDENTIFIER="ad-other" LAST-CHANGE="2026-02-01T08:00:00Z" LONG-NAME="Other code">
+              <TYPE>
+                <DATATYPE-DEFINITION-STRING-REF>dt-short-string</DATATYPE-DEFINITION-STRING-REF>
+              </TYPE>
+            </ATTRIBUTE-DEFINITION-STRING>
+          </SPEC-ATTRIBUTES>
+        </SPEC-OBJECT-TYPE>
+        <SPECIFICATION-TYPE IDENTIFIER="type-specification" LAST-CHANGE="2026-02-01T08:00:00Z" LONG-NAME="Specification"/>
+      </SPEC-TYPES>
+      <SPEC-OBJECTS>
+        <SPEC-OBJECT IDENTIFIER="req-values" LAST-CHANGE="2026-02-01T08:00:00Z">
+          <TYPE>
+            <SPEC-OBJECT-TYPE-REF>type-requirement</SPEC-OBJECT-TYPE-REF>
+          </TYPE>
+          <VALUES>
+            <ATTRIBUTE-VALUE-STRING THE-VALUE="far too long">
+              <DEFINITION>
+                <ATTRIBUTE-DEFINITION-STRING-REF>ad-code</ATTRIBUTE-DEFINITION-STRING-REF>
+              </DEFINITION>
+            </ATTRIBUTE-VALUE-STRING>
+            <ATTRIBUTE-VALUE-STRING THE-VALUE="ok">
+              <DEFINITION>
+                <ATTRIBUTE-DEFINITION-STRING-REF>ad-code</ATTRIBUTE-DEFINITION-STRING-REF>
+              </DEFINITION>
+            </ATTRIBUTE-VALUE-STRING>
+            <ATTRIBUTE-VALUE-INTEGER THE-VALUE="11">
+              <DEFINITION>
+                <ATTRIBUTE-DEFINITION-INTEGER-REF>ad-capacity</ATTRIBUTE-DEFINITION-INTEGER-REF>
+              </DEFINITION>
+            </ATTRIBUTE-VALUE-INTEGER>
+            <ATTRIBUTE-VALUE-REAL THE-VALUE="1.5">
+              <DEFINITION>
+                <ATTRIBUTE-DEFINITION-REAL-REF>ad-fill-ratio</ATTRIBUTE-DEFINITION-REAL-REF>
+              </DEFINITION>
+            </ATTRIBUTE-VALUE-REAL>
+            <ATTRIBUTE-VALUE-ENUMERATION>
+              <DEFINITION>
+                <ATTRIBUTE-DEFINITION-ENUMERATION-REF>ad-colour</ATTRIBUTE-DEFINITION-ENUMERATION-REF>
+              </DEFINITION>
+              <VALUES>
+                <ENUM-VALUE-REF>ev-red</ENUM-VALUE-REF>
+                <ENUM-VALUE-REF>ev-green</ENUM-VALUE-REF>
+              </VALUES>
+            </ATTRIBUTE-VALUE-ENUMERATION>
+            <ATTRIBUTE-VALUE-STRING THE-VALUE="x">
+              <DEFINITION>
+                <ATTRIBUTE-DEFINITION-STRING-REF>ad-other</ATTRIBUTE-DEFINITION-STRING-REF>
+              </DEFINITION>
+            </ATTRIBUTE-VALUE-STRING>
+          </VALUES>
+        </SPEC-OBJECT>
+        <SPEC-OBJECT IDENTIFIER="req-more-values" LAST-CHANGE="2026-02-01T08:00:00Z">
+          <TYPE>
+            <SPEC-OBJECT-TYPE-REF>type-requirement</SPEC-OBJECT-TYPE-REF>
+          </TYPE>
+          <VALUES>
+            <ATTRIBUTE-VALUE-REAL THE-VALUE="0.25">
+              <DEFINITION>
+                <ATTRIBUTE-DEFINITION-REAL-REF>ad-fill-ratio</ATTRIBUTE-DEFINITION-REAL-REF>
+              </DEFINITION>
+            </ATTRIBUTE-VALUE-REAL>
+            <ATTRIBUTE-VALUE-ENUMERATION>
+              <DEFINITION>
+                <ATTRIBUTE-DEFINITION-ENUMERATION-REF>ad-colour</ATTRIBUTE-DEFINITION-ENUMERATION-REF>
+              </DEFINITION>
+              <VALUES>
+                <ENUM-VALUE-REF>ev-small</ENUM-VALUE-REF>
+              </VALUES>
+            </ATTRIBUTE-VALUE-ENUMERATION>
+            <ATTRIBUTE-VALUE-STRING THE-VALUE="5">
+              <DEFINITION>
+                <ATTRIBUTE-DEFINITION-STRING-REF>ad-capacity</ATTRIBUTE-DEFINITION-STRING-REF>
+              </DEFINITION>
+            </ATTRIBUTE-VALUE-STRING>
+          </VALUES>
+        </SPEC-OBJECT>
+      </SPEC-OBJECTS>
+      <SPECIFICATIONS>
+        <SPECIFICATION IDENTIFIER="spec-kettle" LAST-CHANGE="2026-02-01T08:00:00Z" LONG-NAME="Kettle">
+          <TYPE>
+            <SPECIFICATION-TYPE-REF>type-specification</SPECIFICATION-TYPE-REF>
+          </TYPE>
+          <CHILDREN>
+            <SPEC-HIERARCHY IDENTIFIER="sh-values" LAST-CHANGE="2026-02-01T08:00:00Z">
+              <OBJECT>
+                <SPEC-OBJECT-REF>req-values</SPEC-OBJECT-REF>
+              </OBJECT>
+            </SPEC-HIERARCHY>
+            <SPEC-HIERARCHY IDENTIFIER="sh-more-values" LAST-CHANGE="2026-02-01T08:00:00Z">
+              <OBJECT>
+                <SPEC-OBJECT-REF>req-more-values</SPEC-OBJECT-REF>
+              </OBJECT>
+            </SPEC-HIERARCHY>
+          </CHILDREN>
+        </SPECIFICATION>
+      </SPECIFICATIONS>
+    </REQ-IF-CONTENT>
+  </CORE-CONTENT>
+</REQ-IF>

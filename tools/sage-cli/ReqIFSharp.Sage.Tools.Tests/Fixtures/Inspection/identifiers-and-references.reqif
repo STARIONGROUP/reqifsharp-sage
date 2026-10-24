@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Toy fixture: identification, reference, structure and header defects (rules R-001 to R-007 and R-020 to R-026). -->
+<REQ-IF xmlns="http://www.omg.org/spec/ReqIF/20110401/reqif.xsd">
+  <THE-HEADER>
+    <REQ-IF-HEADER IDENTIFIER="header-toaster">
+      <CREATION-TIME>2026-02-01T08:00:00Z</CREATION-TIME>
+      <REQ-IF-TOOL-ID>toy exporter 1.0</REQ-IF-TOOL-ID>
+      <REQ-IF-VERSION>2.0</REQ-IF-VERSION>
+    </REQ-IF-HEADER>
+  </THE-HEADER>
+  <CORE-CONTENT>
+    <REQ-IF-CONTENT>
+      <DATATYPES>
+        <DATATYPE-DEFINITION-STRING IDENTIFIER="dt-string" LAST-CHANGE="2026-02-01T08:00:00Z" LONG-NAME="T_String" MAX-LENGTH="50"/>
+        <DATATYPE-DEFINITION-STRING IDENTIFIER="dt-dup" LAST-CHANGE="2026-02-01T08:00:00Z" LONG-NAME="T_First" MAX-LENGTH="10"/>
+        <DATATYPE-DEFINITION-STRING IDENTIFIER="dt-dup" LAST-CHANGE="2026-02-01T08:00:00Z" LONG-NAME="T_Second" MAX-LENGTH="10"/>
+        <DATATYPE-DEFINITION-ENUMERATION IDENTIFIER="dt-browning" LAST-CHANGE="2026-02-01T08:00:00Z" LONG-NAME="T_Browning">
+          <SPECIFIED-VALUES>
+            <ENUM-VALUE IDENTIFIER="ev-nameless" LAST-CHANGE="2026-02-01T08:00:00Z">
+              <PROPERTIES>
+                <EMBEDDED-VALUE KEY="1" OTHER-CONTENT="light"/>
+              </PROPERTIES>
+            </ENUM-VALUE>
+          </SPECIFIED-VALUES>
+        </DATATYPE-DEFINITION-ENUMERATION>
+      </DATATYPES>
+      <SPEC-TYPES>
+        <SPEC-OBJECT-TYPE IDENTIFIER="type-requirement" LAST-CHANGE="2026-02-01T08:00:00Z" LONG-NAME="Requirement">
+          <SPEC-ATTRIBUTES>
+            <ATTRIBUTE-DEFINITION-STRING IDENTIFIER="ad-foreign-id" LAST-CHANGE="2026-02-01T08:00:00Z" LONG-NAME="ReqIF.ForeignID">
+              <TYPE>
+                <DATATYPE-DEFINITION-STRING-REF>dt-string</DATATYPE-DEFINITION-STRING-REF>
+              </TYPE>
+            </ATTRIBUTE-DEFINITION-STRING>
+          </SPEC-ATTRIBUTES>
+        </SPEC-OBJECT-TYPE>
+        <SPECIFICATION-TYPE IDENTIFIER="type-specification" LAST-CHANGE="2026-02-01T08:00:00Z" LONG-NAME="Specification"/>
+        <SPEC-RELATION-TYPE IDENTIFIER="type-link" LAST-CHANGE="2026-02-01T08:00:00Z" LONG-NAME="link"/>
+        <RELATION-GROUP-TYPE IDENTIFIER="type-group" LAST-CHANGE="2026-02-01T08:00:00Z" LONG-NAME="group"/>
+      </SPEC-TYPES>
+      <SPEC-OBJECTS>
+        <SPEC-OBJECT IDENTIFIER="req-a" LAST-CHANGE="2026-02-01T08:00:00Z">
+          <TYPE>
+            <SPEC-OBJECT-TYPE-REF>type-requirement</SPEC-OBJECT-TYPE-REF>
+          </TYPE>
+        </SPEC-OBJECT>
+        <SPEC-OBJECT IDENTIFIER="req-b" LAST-CHANGE="2026-02-01T08:00:00Z">
+          <TYPE>
+            <SPEC-OBJECT-TYPE-REF>type-requirement</SPEC-OBJECT-TYPE-REF>
+          </TYPE>
+        </SPEC-OBJECT>
+        <SPEC-OBJECT IDENTIFIER="req-c" LAST-CHANGE="2026-02-01T08:00:00Z">
+          <TYPE>
+            <SPEC-OBJECT-TYPE-REF>type-requirement</SPEC-OBJECT-TYPE-REF>
+          </TYPE>
+        </SPEC-OBJECT>
+        <SPEC-OBJECT LAST-CHANGE="2026-02-01T08:00:00Z" LONG-NAME="nameless toast">
+          <TYPE>
+            <SPEC-OBJECT-TYPE-REF>type-requirement</SPEC-OBJECT-TYPE-REF>
+          </TYPE>
+        </SPEC-OBJECT>
+        <SPEC-OBJECT IDENTIFIER="req-no-last-change">
+          <TYPE>
+            <SPEC-OBJECT-TYPE-REF>type-requirement</SPEC-OBJECT-TYPE-REF>
+          </TYPE>
+        </SPEC-OBJECT>
+        <SPEC-OBJECT IDENTIFIER="req-unknown-type" LAST-CHANGE="2026-02-01T08:00:00Z">
+          <TYPE>
+            <SPEC-OBJECT-TYPE-REF>type-missing</SPEC-OBJECT-TYPE-REF>
+          </TYPE>
+        </SPEC-OBJECT>
+        <SPEC-OBJECT IDENTIFIER="req-wrong-kind" LAST-CHANGE="2026-02-01T08:00:00Z">
+          <TYPE>
+            <SPEC-OBJECT-TYPE-REF>type-specification</SPEC-OBJECT-TYPE-REF>
+          </TYPE>
+        </SPEC-OBJECT>
+        <SPEC-OBJECT IDENTIFIER="req-orphan" LAST-CHANGE="2026-02-01T08:00:00Z">
+          <TYPE>
+            <SPEC-OBJECT-TYPE-REF>type-requirement</SPEC-OBJECT-TYPE-REF>
+          </TYPE>
+        </SPEC-OBJECT>
+      </SPEC-OBJECTS>
+      <SPEC-RELATIONS>
+        <SPEC-RELATION IDENTIFIER="rel-dangling" LAST-CHANGE="2026-02-01T08:00:00Z">
+          <SOURCE>
+            <SPEC-OBJECT-REF>req-a</SPEC-OBJECT-REF>
+          </SOURCE>
+          <TARGET>
+            <SPEC-OBJECT-REF>req-elsewhere</SPEC-OBJECT-REF>
+          </TARGET>
+          <TYPE>
+            <SPEC-RELATION-TYPE-REF>type-link</SPEC-RELATION-TYPE-REF>
+          </TYPE>
+        </SPEC-RELATION>
+        <SPEC-RELATION IDENTIFIER="rel-a-c" LAST-CHANGE="2026-02-01T08:00:00Z">
+          <SOURCE>
+            <SPEC-OBJECT-REF>req-a</SPEC-OBJECT-REF>
+          </SOURCE>
+          <TARGET>
+            <SPEC-OBJECT-REF>req-c</SPEC-OBJECT-REF>
+          </TARGET>
+          <TYPE>
+            <SPEC-RELATION-TYPE-REF>type-link</SPEC-RELATION-TYPE-REF>
+          </TYPE>
+        </SPEC-RELATION>
+      </SPEC-RELATIONS>
+      <SPECIFICATIONS>
+        <SPECIFICATION IDENTIFIER="spec-1" LAST-CHANGE="2026-02-01T08:00:00Z" LONG-NAME="Toaster">
+          <TYPE>
+            <SPECIFICATION-TYPE-REF>type-specification</SPECIFICATION-TYPE-REF>
+          </TYPE>
+          <CHILDREN>
+            <SPEC-HIERARCHY IDENTIFIER="sh-a" LAST-CHANGE="2026-02-01T08:00:00Z">
+              <OBJECT>
+                <SPEC-OBJECT-REF>req-a</SPEC-OBJECT-REF>
+              </OBJECT>
+            </SPEC-HIERARCHY>
+            <SPEC-HIERARCHY IDENTIFIER="sh-a-again" LAST-CHANGE="2026-02-01T08:00:00Z">
+              <OBJECT>
+                <SPEC-OBJECT-REF>req-a</SPEC-OBJECT-REF>
+              </OBJECT>
+            </SPEC-HIERARCHY>
+            <SPEC-HIERARCHY IDENTIFIER="sh-no-object" LAST-CHANGE="2026-02-01T08:00:00Z"/>
+            <SPEC-HIERARCHY IDENTIFIER="sh-no-last-change" LAST-CHANGE="2026-02-01T08:00:00Z">
+              <OBJECT>
+                <SPEC-OBJECT-REF>req-no-last-change</SPEC-OBJECT-REF>
+              </OBJECT>
+            </SPEC-HIERARCHY>
+            <SPEC-HIERARCHY IDENTIFIER="sh-unknown-type" LAST-CHANGE="2026-02-01T08:00:00Z">
+              <OBJECT>
+                <SPEC-OBJECT-REF>req-unknown-type</SPEC-OBJECT-REF>
+              </OBJECT>
+            </SPEC-HIERARCHY>
+            <SPEC-HIERARCHY IDENTIFIER="sh-wrong-kind" LAST-CHANGE="2026-02-01T08:00:00Z">
+              <OBJECT>
+                <SPEC-OBJECT-REF>req-wrong-kind</SPEC-OBJECT-REF>
+              </OBJECT>
+            </SPEC-HIERARCHY>
+          </CHILDREN>
+        </SPECIFICATION>
+        <SPECIFICATION IDENTIFIER="spec-2" LAST-CHANGE="2026-02-01T08:00:00Z" LONG-NAME="Heating element">
+          <TYPE>
+            <SPECIFICATION-TYPE-REF>type-specification</SPECIFICATION-TYPE-REF>
+          </TYPE>
+          <CHILDREN>
+            <SPEC-HIERARCHY IDENTIFIER="sh-b" LAST-CHANGE="2026-02-01T08:00:00Z">
+              <OBJECT>
+                <SPEC-OBJECT-REF>req-b</SPEC-OBJECT-REF>
+              </OBJECT>
+            </SPEC-HIERARCHY>
+          </CHILDREN>
+        </SPECIFICATION>
+        <SPECIFICATION IDENTIFIER="spec-3" LAST-CHANGE="2026-02-01T08:00:00Z" LONG-NAME="Crumb tray">
+          <TYPE>
+            <SPECIFICATION-TYPE-REF>type-specification</SPECIFICATION-TYPE-REF>
+          </TYPE>
+          <CHILDREN>
+            <SPEC-HIERARCHY IDENTIFIER="sh-c" LAST-CHANGE="2026-02-01T08:00:00Z">
+              <OBJECT>
+                <SPEC-OBJECT-REF>req-c</SPEC-OBJECT-REF>
+              </OBJECT>
+            </SPEC-HIERARCHY>
+          </CHILDREN>
+        </SPECIFICATION>
+      </SPECIFICATIONS>
+      <SPEC-RELATION-GROUPS>
+        <RELATION-GROUP IDENTIFIER="group-nameless" LAST-CHANGE="2026-02-01T08:00:00Z">
+          <SOURCE-SPECIFICATION>
+            <SPECIFICATION-REF>spec-1</SPECIFICATION-REF>
+          </SOURCE-SPECIFICATION>
+          <SPEC-RELATIONS>
+            <SPEC-RELATION-REF>rel-a-c</SPEC-RELATION-REF>
+          </SPEC-RELATIONS>
+          <TARGET-SPECIFICATION>
+            <SPECIFICATION-REF>spec-2</SPECIFICATION-REF>
+          </TARGET-SPECIFICATION>
+          <TYPE>
+            <RELATION-GROUP-TYPE-REF>type-group</RELATION-GROUP-TYPE-REF>
+          </TYPE>
+        </RELATION-GROUP>
+      </SPEC-RELATION-GROUPS>
+    </REQ-IF-CONTENT>
+  </CORE-CONTENT>
+</REQ-IF>

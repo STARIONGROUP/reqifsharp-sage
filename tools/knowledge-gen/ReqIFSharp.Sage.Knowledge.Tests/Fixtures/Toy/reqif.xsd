@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- A hand-written, fictional schema in the shape of the ReqIF schema (not OMG content). -->
+<xsd:schema xmlns:TOY="http://example.org/toy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://example.org/toy">
+  <xsd:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="http://www.w3.org/2001/xml.xsd"/>
+  <xsd:element name="WIDGET-BOX" type="TOY:WIDGET-BOX"/>
+  <xsd:simpleType name="LOCAL-REF">
+    <xsd:restriction base="xsd:IDREF"/>
+  </xsd:simpleType>
+  <xsd:complexType name="WIDGET-BOX">
+    <xsd:all>
+      <xsd:element maxOccurs="1" minOccurs="0" name="GADGETS">
+        <xsd:complexType>
+          <xsd:choice maxOccurs="unbounded" minOccurs="0">
+            <xsd:element name="GADGET" type="TOY:GADGET"/>
+          </xsd:choice>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="FAVOURITE-GADGET">
+        <xsd:complexType>
+          <xsd:choice maxOccurs="1" minOccurs="1">
+            <xsd:element name="GADGET-REF" type="TOY:LOCAL-REF"/>
+          </xsd:choice>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="EXTRAS">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:any namespace="##other" processContents="lax" maxOccurs="unbounded" minOccurs="0"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:all>
+    <xsd:attribute name="IDENTIFIER" type="xsd:ID" use="required"/>
+    <xsd:attribute name="LONG-NAME" type="xsd:string" use="optional"/>
+    <xsd:attribute ref="xml:lang" use="optional"/>
+  </xsd:complexType>
+  <xsd:complexType name="GADGET">
+    <xsd:all/>
+    <xsd:attribute name="IDENTIFIER" type="xsd:ID" use="required"/>
+    <xsd:attribute name="IS-SHINY" type="xsd:boolean" use="optional"/>
+  </xsd:complexType>
+  <xsd:group name="toy.Block.class">
+    <xsd:choice>
+      <xsd:element name="div"/>
+      <xsd:group ref="toy.Inline.class"/>
+    </xsd:choice>
+  </xsd:group>
+  <xsd:group name="toy.Inline.class">
+    <xsd:choice>
+      <xsd:element name="span"/>
+    </xsd:choice>
+  </xsd:group>
+</xsd:schema>

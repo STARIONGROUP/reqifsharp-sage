@@ -1,0 +1,109 @@
+name: Release CLI
+
+# Publishes the full reqifsharp-sage CLI as a self-contained, per-runtime-identifier zip for each of
+# the four published platforms, records each asset's SHA-256 in the release body (parsed by
+# ReqIFSharp.Sage.Tools.Hook.ChecksumTable), and drafts a GitHub Release tagged tools-v<version>.
+# NativeAOT is deliberately NOT used here - see CLAUDE.md ("Why the full CLI is not NativeAOT").
+
+on:
+  push:
+    tags:
+      - "tools-v*"
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    strategy:
+      matrix:
+        rid: [win-x64, linux-x64, osx-x64, osx-arm64]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "10.0.x"
+
+      - name: Resolve version from tag
+        id: version
+        run: echo "version=${GITHUB_REF_NAME#tools-v}" >> "$GITHUB_OUTPUT"
+
+      - name: Publish
+        run: >
+          dotnet publish tools/sage-cli/ReqIFSharp.Sage.Tools
+          -r ${{ matrix.rid }} -c Release --self-contained
+          -o publish/${{ matrix.rid }}
+
+      - name: Zip
+        working-directory: publish/${{ matrix.rid }}
+        run: zip -r "../../reqifsharp-sage-${{ steps.version.outputs.version }}-${{ matrix.rid }}.zip" .
+
+      - name: Checksum
+        id: checksum
+        run: |
+          hash=$(sha256sum "reqifsharp-sage-${{ steps.version.outputs.version }}-${{ matrix.rid }}.zip" | cut -d' ' -f1)
+          echo "line=reqifsharp-sage-${{ steps.version.outputs.version }}-${{ matrix.rid }}.zip sha256:$hash" >> "$GITHUB_OUTPUT"
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-${{ matrix.rid }}
+          path: |
+            reqifsharp-sage-*.zip
+          retention-days: 7
+
+      - name: Save checksum line
+        run: echo "${{ steps.checksum.outputs.line }}" > checksum-${{ matrix.rid }}.txt
+
+      - name: Upload checksum
+        uses: actions/upload-artifact@v4
+        with:
+          name: checksum-${{ matrix.rid }}
+          path: checksum-${{ matrix.rid }}.txt
+
+  release:
+    # Creates the GitHub release and tag.
+    permissions:
+      contents: write
+    needs: publish
+    runs-on: ubuntu-latest
+    steps:
+      - name: Resolve version from tag
+        id: version
+        run: echo "version=${GITHUB_REF_NAME#tools-v}" >> "$GITHUB_OUTPUT"
+
+      - name: Download all zips
+        uses: actions/download-artifact@v4
+        with:
+          pattern: release-*
+          path: dist
+          merge-multiple: true
+
+      - name: Download all checksums
+        uses: actions/download-artifact@v4
+        with:
+          pattern: checksum-*
+          path: checksums
+          merge-multiple: true
+
+      - name: Build release body
+        run: |
+          {
+            echo "## reqifsharp-sage tools v${{ steps.version.outputs.version }}"
+            echo
+            echo "Checksums:"
+            echo
+            cat checksums/*.txt
+          } > release-body.md
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.ref_name }}
+          name: "tools v${{ steps.version.outputs.version }}"
+          body_path: release-body.md
+          files: dist/*.zip
+          prerelease: ${{ contains(steps.version.outputs.version, '-') }}

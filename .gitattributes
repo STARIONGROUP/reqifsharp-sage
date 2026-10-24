@@ -1,0 +1,10 @@
+# Generated knowledge-base output must be byte-for-byte deterministic across
+# platforms (see CLAUDE.md, "Determinism of generated artifacts"). It is
+# git-ignored today, but this pins line endings for the day it (or fixtures
+# derived from it) are compared/committed.
+knowledge/** text eol=lf
+*.md text eol=lf
+*.json text eol=lf
+
+# Committed hook binaries must never be touched by line-ending normalization.
+hooks/native/** -text -diff binary

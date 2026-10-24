@@ -1,0 +1,22 @@
+{
+  "name": "reqifsharp",
+  "owner": {
+    "name": "Starion Group S.A.",
+    "url": "https://github.com/STARIONGROUP"
+  },
+  "metadata": {
+    "description": "The reqifsharp ecosystem marketplace - Claude plugins for working with the OMG Requirements Interchange Format (ReqIF).",
+    "version": "0.0.1"
+  },
+  "plugins": [
+    {
+      "name": "reqifsharp-sage",
+      "source": {
+        "source": "github",
+        "repo": "STARIONGROUP/reqifsharp-sage",
+        "ref": "v0.1.0"
+      },
+      "description": "ReqIF 1.2 agent: metamodel and XML schema lookup, normative spec citation, prostep Implementation Guide citation (bring your own copy), reqifsharp API lookup and usage guidance, and .reqif/.reqifz inspection."
+    }
+  ]
+}

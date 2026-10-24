@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Using Include="NUnit.Framework" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ReqIFSharp.Sage.Tools\ReqIFSharp.Sage.Tools.csproj" />
+    <!-- Only to check that the JSON output of the check verb deserializes into the hook's own CheckResult (a contract). -->
+    <ProjectReference Include="..\ReqIFSharp.Sage.Tools.Hook\ReqIFSharp.Sage.Tools.Hook.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Fixtures\**\*" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<REQ-IF xmlns="http://www.omg.org/spec/ReqIF/20110401/reqif.xsd" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <THE-HEADER>
+    <REQ-IF-HEADER IDENTIFIER="header-coffee">
+      <CREATION-TIME>2026-01-15T10:00:00+01:00</CREATION-TIME>
+      <REQ-IF-TOOL-ID>toy exporter 1.0</REQ-IF-TOOL-ID>
+      <REQ-IF-VERSION>1.0</REQ-IF-VERSION>
+      <SOURCE-TOOL-ID>toy authoring tool 1.0</SOURCE-TOOL-ID>
+      <TITLE>Coffee machine requirements</TITLE>
+    </REQ-IF-HEADER>
+  </THE-HEADER>
+  <CORE-CONTENT>
+    <REQ-IF-CONTENT>
+      <DATATYPES>
+        <DATATYPE-DEFINITION-STRING IDENTIFIER="dt-string" LAST-CHANGE="2026-01-15T10:00:00+01:00" LONG-NAME="T_String" MAX-LENGTH="20"/>
+        <DATATYPE-DEFINITION-XHTML IDENTIFIER="dt-xhtml" LAST-CHANGE="2026-01-15T10:00:00+01:00" LONG-NAME="T_Xhtml"/>
+        <DATATYPE-DEFINITION-INTEGER IDENTIFIER="dt-integer" LAST-CHANGE="2026-01-15T10:00:00+01:00" LONG-NAME="T_Integer" MIN="0" MAX="100"/>
+        <DATATYPE-DEFINITION-REAL IDENTIFIER="dt-real" LAST-CHANGE="2026-01-15T10:00:00+01:00" LONG-NAME="T_Real" ACCURACY="2" MIN="0.0" MAX="10.0"/>
+        <DATATYPE-DEFINITION-BOOLEAN IDENTIFIER="dt-boolean" LAST-CHANGE="2026-01-15T10:00:00+01:00" LONG-NAME="T_Boolean"/>
+        <DATATYPE-DEFINITION-DATE IDENTIFIER="dt-date" LAST-CHANGE="2026-01-15T10:00:00+01:00" LONG-NAME="T_Date"/>
+        <DATATYPE-DEFINITION-ENUMERATION IDENTIFIER="dt-priority" LAST-CHANGE="2026-01-15T10:00:00+01:00" LONG-NAME="T_Priority">
+          <SPECIFIED-VALUES>
+            <ENUM-VALUE IDENTIFIER="ev-high" LAST-CHANGE="2026-01-15T10:00:00+01:00" LONG-NAME="High">
+              <PROPERTIES>
+                <EMBEDDED-VALUE KEY="1" OTHER-CONTENT="high"/>
+              </PROPERTIES>
+            </ENUM-VALUE>
+            <ENUM-VALUE IDENTIFIER="ev-low" LAST-CHANGE="2026-01-15T10:00:00+01:00" LONG-NAME="Low">
+              <PROPERTIES>
+                <EMBEDDED-VALUE KEY="2" OTHER-CONTENT="low"/>
+              </PROPERTIES>
+            </ENUM-VALUE>
+          </SPECIFIED-VALUES>
+        </DATATYPE-DEFINITION-ENUMERATION>
+      </DATATYPES>
+      <SPEC-TYPES>
+        <SPEC-OBJECT-TYPE IDENTIFIER="type-requirement" LAST-CHANGE="2026-01-15T10:00:00+01:00" LONG-NAME="Requirement">
+          <SPEC-ATTRIBUTES>
+            <ATTRIBUTE-DEFINITION-STRING IDENTIFIER="ad-foreign-id" LAST-CHANGE="2026-01-15T10:00:00+01:00" LONG-NAME="ReqIF.ForeignID">
+              <TYPE>
+                <DATATYPE-DEFINITION-STRING-REF>dt-string</DATATYPE-DEFINITION-STRING-REF>
+              </TYPE>
+            </ATTRIBUTE-DEFINITION-STRING>
+            <ATTRIBUTE-DEFINITION-XHTML IDENTIFIER="ad-text" LAST-CHANGE="2026-01-15T10:00:00+01:00" LONG-NAME="ReqIF.Text">
+              <TYPE>
+                <DATATYPE-DEFINITION-XHTML-REF>dt-xhtml</DATATYPE-DEFINITION-XHTML-REF>
+              </TYPE>
+            </ATTRIBUTE-DEFINITION-XHTML>
+            <ATTRIBUTE-DEFINITION-INTEGER IDENTIFIER="ad-cups" LAST-CHANGE="2026-01-15T10:00:00+01:00" LONG-NAME="Cups per hour">
+              <TYPE>
+                <DATATYPE-DEFINITION-INTEGER-REF>dt-integer</DATATYPE-DEFINITION-INTEGER-REF>
+              </TYPE>
+            </ATTRIBUTE-DEFINITION-INTEGER>
+            <ATTRIBUTE-DEFINITION-REAL IDENTIFIER="ad-tolerance" LAST-CHANGE="2026-01-15T10:00:00+01:00" LONG-NAME="Temperature tolerance">
+              <TYPE>
+                <DATATYPE-DEFINITION-REAL-REF>dt-real</DATATYPE-DEFINITION-REAL-REF>
+              </TYPE>
+            </ATTRIBUTE-DEFINITION-REAL>
+            <ATTRIBUTE-DEFINITION-BOOLEAN IDENTIFIER="ad-safety" LAST-CHANGE="2026-01-15T10:00:00+01:00" LONG-NAME="Safety relevant">
+              <DEFAULT-VALUE>
+                <ATTRIBUTE-VALUE-BOOLEAN THE-VALUE="false">
+                  <DEFINITION>
+                    <ATTRIBUTE-DEFINITION-BOOLEAN-REF>ad-safety</ATTRIBUTE-DEFINITION-BOOLEAN-REF>
+                  </DEFINITION>
+                </ATTRIBUTE-VALUE-BOOLEAN>
+              </DEFAULT-VALUE>
+              <TYPE>
+                <DATATYPE-DEFINITION-BOOLEAN-REF>dt-boolean</DATATYPE-DEFINITION-BOOLEAN-REF>
+              </TYPE>
+            </ATTRIBUTE-DEFINITION-BOOLEAN>
+            <ATTRIBUTE-DEFINITION-DATE IDENTIFIER="ad-reviewed" LAST-CHANGE="2026-01-15T10:00:00+01:00" LONG-NAME="Reviewed on">
+              <TYPE>
+                <DATATYPE-DEFINITION-DATE-REF>dt-date</DATATYPE-DEFINITION-DATE-REF>
+              </TYPE>
+            </ATTRIBUTE-DEFINITION-DATE>
+            <ATTRIBUTE-DEFINITION-ENUMERATION IDENTIFIER="ad-priority" LAST-CHANGE="2026-01-15T10:00:00+01:00" LONG-NAME="Priority" MULTI-VALUED="false">
+              <TYPE>
+                <DATATYPE-DEFINITION-ENUMERATION-REF>dt-priority</DATATYPE-DEFINITION-ENUMERATION-REF>
+              </TYPE>
+            </ATTRIBUTE-DEFINITION-ENUMERATION>
+          </SPEC-ATTRIBUTES>
+        </SPEC-OBJECT-TYPE>
+        <SPECIFICATION-TYPE IDENTIFIER="type-specification" LAST-CHANGE="2026-01-15T10:00:00+01:00" LONG-NAME="Specification">
+          <SPEC-ATTRIBUTES>
+            <ATTRIBUTE-DEFINITION-XHTML IDENTIFIER="ad-specification-name" LAST-CHANGE="2026-01-15T10:00:00+01:00" LONG-NAME="ReqIF.Name">
+              <TYPE>
+                <DATATYPE-DEFINITION-XHTML-REF>dt-xhtml</DATATYPE-DEFINITION-XHTML-REF>
+              </TYPE>
+            </ATTRIBUTE-DEFINITION-XHTML>
+          </SPEC-ATTRIBUTES>
+        </SPECIFICATION-TYPE>
+        <SPEC-RELATION-TYPE IDENTIFIER="type-refines" LAST-CHANGE="2026-01-15T10:00:00+01:00" LONG-NAME="refines"/>
+      </SPEC-TYPES>
+      <SPEC-OBJECTS>
+        <SPEC-OBJECT IDENTIFIER="req-brew" LAST-CHANGE="2026-01-15T10:00:00+01:00">
+          <TYPE>
+            <SPEC-OBJECT-TYPE-REF>type-requirement</SPEC-OBJECT-TYPE-REF>
+          </TYPE>
+          <VALUES>
+            <ATTRIBUTE-VALUE-STRING THE-VALUE="CM-1">
+              <DEFINITION>
+                <ATTRIBUTE-DEFINITION-STRING-REF>ad-foreign-id</ATTRIBUTE-DEFINITION-STRING-REF>
+              </DEFINITION>
+            </ATTRIBUTE-VALUE-STRING>
+            <ATTRIBUTE-VALUE-XHTML>
+              <DEFINITION>
+                <ATTRIBUTE-DEFINITION-XHTML-REF>ad-text</ATTRIBUTE-DEFINITION-XHTML-REF>
+              </DEFINITION>
+              <THE-VALUE>
+                <xhtml:div>The machine <xhtml:b>shall</xhtml:b> brew a cup of coffee.</xhtml:div>
+              </THE-VALUE>
+            </ATTRIBUTE-VALUE-XHTML>
+            <ATTRIBUTE-VALUE-INTEGER THE-VALUE="40">
+              <DEFINITION>
+                <ATTRIBUTE-DEFINITION-INTEGER-REF>ad-cups</ATTRIBUTE-DEFINITION-INTEGER-REF>
+              </DEFINITION>
+            </ATTRIBUTE-VALUE-INTEGER>
+            <ATTRIBUTE-VALUE-REAL THE-VALUE="0.5">
+              <DEFINITION>
+                <ATTRIBUTE-DEFINITION-REAL-REF>ad-tolerance</ATTRIBUTE-DEFINITION-REAL-REF>
+              </DEFINITION>
+            </ATTRIBUTE-VALUE-REAL>
+            <ATTRIBUTE-VALUE-BOOLEAN THE-VALUE="true">
+              <DEFINITION>
+                <ATTRIBUTE-DEFINITION-BOOLEAN-REF>ad-safety</ATTRIBUTE-DEFINITION-BOOLEAN-REF>
+              </DEFINITION>
+            </ATTRIBUTE-VALUE-BOOLEAN>
+            <ATTRIBUTE-VALUE-DATE THE-VALUE="2026-01-10T09:00:00+01:00">
+              <DEFINITION>
+                <ATTRIBUTE-DEFINITION-DATE-REF>ad-reviewed</ATTRIBUTE-DEFINITION-DATE-REF>
+              </DEFINITION>
+            </ATTRIBUTE-VALUE-DATE>
+            <ATTRIBUTE-VALUE-ENUMERATION>
+              <DEFINITION>
+                <ATTRIBUTE-DEFINITION-ENUMERATION-REF>ad-priority</ATTRIBUTE-DEFINITION-ENUMERATION-REF>
+              </DEFINITION>
+              <VALUES>
+                <ENUM-VALUE-REF>ev-high</ENUM-VALUE-REF>
+              </VALUES>
+            </ATTRIBUTE-VALUE-ENUMERATION>
+          </VALUES>
+        </SPEC-OBJECT>
+        <SPEC-OBJECT IDENTIFIER="req-grind" LAST-CHANGE="2026-01-15T10:00:00+01:00">
+          <TYPE>
+            <SPEC-OBJECT-TYPE-REF>type-requirement</SPEC-OBJECT-TYPE-REF>
+          </TYPE>
+          <VALUES>
+            <ATTRIBUTE-VALUE-STRING THE-VALUE="CM-2">
+              <DEFINITION>
+                <ATTRIBUTE-DEFINITION-STRING-REF>ad-foreign-id</ATTRIBUTE-DEFINITION-STRING-REF>
+              </DEFINITION>
+            </ATTRIBUTE-VALUE-STRING>
+            <ATTRIBUTE-VALUE-XHTML>
+              <DEFINITION>
+                <ATTRIBUTE-DEFINITION-XHTML-REF>ad-text</ATTRIBUTE-DEFINITION-XHTML-REF>
+              </DEFINITION>
+              <THE-VALUE>
+                <xhtml:div>The machine shall grind the beans before brewing.</xhtml:div>
+              </THE-VALUE>
+            </ATTRIBUTE-VALUE-XHTML>
+          </VALUES>
+        </SPEC-OBJECT>
+      </SPEC-OBJECTS>
+      <SPEC-RELATIONS>
+        <SPEC-RELATION IDENTIFIER="rel-grind-refines-brew" LAST-CHANGE="2026-01-15T10:00:00+01:00">
+          <SOURCE>
+            <SPEC-OBJECT-REF>req-grind</SPEC-OBJECT-REF>
+          </SOURCE>
+          <TARGET>
+            <SPEC-OBJECT-REF>req-brew</SPEC-OBJECT-REF>
+          </TARGET>
+          <TYPE>
+            <SPEC-RELATION-TYPE-REF>type-refines</SPEC-RELATION-TYPE-REF>
+          </TYPE>
+        </SPEC-RELATION>
+      </SPEC-RELATIONS>
+      <SPECIFICATIONS>
+        <SPECIFICATION IDENTIFIER="spec-coffee" LAST-CHANGE="2026-01-15T10:00:00+01:00" LONG-NAME="Coffee machine">
+          <TYPE>
+            <SPECIFICATION-TYPE-REF>type-specification</SPECIFICATION-TYPE-REF>
+          </TYPE>
+          <VALUES>
+            <ATTRIBUTE-VALUE-XHTML>
+              <DEFINITION>
+                <ATTRIBUTE-DEFINITION-XHTML-REF>ad-specification-name</ATTRIBUTE-DEFINITION-XHTML-REF>
+              </DEFINITION>
+              <THE-VALUE>
+                <xhtml:div>Coffee machine</xhtml:div>
+              </THE-VALUE>
+            </ATTRIBUTE-VALUE-XHTML>
+          </VALUES>
+          <CHILDREN>
+            <SPEC-HIERARCHY IDENTIFIER="sh-brew" LAST-CHANGE="2026-01-15T10:00:00+01:00">
+              <OBJECT>
+                <SPEC-OBJECT-REF>req-brew</SPEC-OBJECT-REF>
+              </OBJECT>
+              <CHILDREN>
+                <SPEC-HIERARCHY IDENTIFIER="sh-grind" LAST-CHANGE="2026-01-15T10:00:00+01:00">
+                  <OBJECT>
+                    <SPEC-OBJECT-REF>req-grind</SPEC-OBJECT-REF>
+                  </OBJECT>
+                </SPEC-HIERARCHY>
+              </CHILDREN>
+            </SPEC-HIERARCHY>
+          </CHILDREN>
+        </SPECIFICATION>
+      </SPECIFICATIONS>
+    </REQ-IF-CONTENT>
+  </CORE-CONTENT>
+</REQ-IF>

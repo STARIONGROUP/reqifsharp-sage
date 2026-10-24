@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- A hand-written, fictional metamodel in the shape of an EA CMOF export (not OMG content). -->
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:cmof="http://schema.omg.org/spec/MOF/2.0/cmof.xml">
+<cmof:Package xmi:id="pkg_toy" name="Toy">
+  <ownedMember xmi:type="cmof:Class" xmi:id="c_named" name="NamedThing" isAbstract="true">
+    <ownedComment xmi:type="cmof:Comment" xmi:id="c_named_doc" annotatedElement="c_named" body="Anything with a name."/>
+    <ownedAttribute xmi:type="cmof:Property" xmi:id="p_named_identifier" name="identifier" visibility="public" type="t_id"/>
+    <ownedAttribute xmi:type="cmof:Property" xmi:id="p_named_longName" name="longName" visibility="public" lower="0">
+      <type xmi:type="cmof:PrimitiveType" href="http://schema.omg.org/spec/MOF/2.0/cmof.xml#String"/>
+    </ownedAttribute>
+  </ownedMember>
+  <ownedMember xmi:type="cmof:Class" xmi:id="c_widget" name="WidgetBox" superClass="c_named">
+    <ownedComment xmi:type="cmof:Comment" xmi:id="c_widget_doc" annotatedElement="c_widget" body="A box of gadgets.&#xA;&#xA;Second paragraph."/>
+    <ownedAttribute xmi:type="cmof:Property" xmi:id="p_widget_gadgets" name="gadgets" visibility="public" type="c_gadget" isOrdered="true" upper="*" lower="0" isComposite="true" association="a_widget_gadgets"/>
+    <ownedAttribute xmi:type="cmof:Property" xmi:id="p_widget_favourite" name="favouriteGadget" visibility="public" type="c_gadget" lower="0" association="a_widget_favourite"/>
+  </ownedMember>
+  <ownedMember xmi:type="cmof:Class" xmi:id="c_gadget" name="Gadget" superClass="c_named">
+    <ownedAttribute xmi:type="cmof:Property" xmi:id="p_gadget_box" name="box" visibility="public" type="c_widget" lower="0" association="a_widget_gadgets"/>
+    <ownedAttribute xmi:type="cmof:Property" xmi:id="p_gadget_isShiny" name="isShiny" visibility="public" lower="0">
+      <type xmi:type="cmof:PrimitiveType" href="http://schema.omg.org/spec/MOF/2.0/cmof.xml#Boolean"/>
+    </ownedAttribute>
+  </ownedMember>
+  <ownedMember xmi:type="cmof:Association" xmi:id="a_widget_gadgets" memberEnd="p_gadget_box p_widget_gadgets"/>
+  <ownedMember xmi:type="cmof:Association" xmi:id="a_widget_favourite" memberEnd="p_widget_favourite p_fav_end">
+    <ownedEnd xmi:type="cmof:Property" xmi:id="p_fav_end" name="favouredBy" visibility="public" type="c_widget" lower="0" upper="*" owningAssociation="a_widget_favourite"/>
+  </ownedMember>
+  <ownedMember xmi:type="cmof:Package" xmi:id="pkg_types" name="Types">
+    <ownedMember xmi:type="cmof:PrimitiveType" xmi:id="t_id" name="ID"/>
+  </ownedMember>
+</cmof:Package>
+<cmof:Tag xmi:id="tag1" name="org.example.order" value="2" element="p_widget_gadgets"/>
+<cmof:Tag xmi:id="tag2" name="org.example.global_element" value="True" element="c_widget"/>
+</xmi:XMI>

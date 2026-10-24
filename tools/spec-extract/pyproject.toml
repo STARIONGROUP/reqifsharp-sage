@@ -1,0 +1,35 @@
+[project]
+name = "spec-extract"
+version = "1.0.0"
+description = "PDF-to-markdown clause extraction for the OMG ReqIF 1.2 specification and the prostep ivip ReqIF Implementation Guide. Ported from mycelium-hypha's tools/spec-extract."
+requires-python = ">=3.12"
+license = { text = "Apache-2.0" }
+dependencies = [
+    "pdfplumber>=0.11,<1.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "ruff>=0.6",
+]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = [
+    "live: requires real, locally-supplied PDFs (REQIF_SPEC_PDF_PATH for the OMG ReqIF 1.2 specification, PSI_GUIDE_PDF_PATH for the prostep ivip ReqIF Implementation Guide); never fetched or committed by the test itself",
+]

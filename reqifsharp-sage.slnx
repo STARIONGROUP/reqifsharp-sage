@@ -1,0 +1,21 @@
+<Solution>
+  <Folder Name="/tools/" />
+  <Folder Name="/tools/sage-cli/">
+    <Project Path="tools/sage-cli/ReqIFSharp.Sage.Tools.Hook.Tests/ReqIFSharp.Sage.Tools.Hook.Tests.csproj" />
+    <Project Path="tools/sage-cli/ReqIFSharp.Sage.Tools.Hook/ReqIFSharp.Sage.Tools.Hook.csproj" />
+    <Project Path="tools/sage-cli/ReqIFSharp.Sage.Tools.Tests/ReqIFSharp.Sage.Tools.Tests.csproj" />
+    <Project Path="tools/sage-cli/ReqIFSharp.Sage.Tools/ReqIFSharp.Sage.Tools.csproj" />
+  </Folder>
+  <Folder Name="/tools/knowledge-gen/">
+    <Project Path="tools/knowledge-gen/ReqIFSharp.Sage.Knowledge.Tests/ReqIFSharp.Sage.Knowledge.Tests.csproj" />
+    <Project Path="tools/knowledge-gen/ReqIFSharp.Sage.Knowledge/ReqIFSharp.Sage.Knowledge.csproj" />
+  </Folder>
+  <Folder Name="/tools/metamodel-gen/">
+    <Project Path="tools/metamodel-gen/ReqIFSharp.Sage.MetamodelGen.Tests/ReqIFSharp.Sage.MetamodelGen.Tests.csproj" />
+    <Project Path="tools/metamodel-gen/ReqIFSharp.Sage.MetamodelGen/ReqIFSharp.Sage.MetamodelGen.csproj" />
+  </Folder>
+  <Folder Name="/tools/apidoc-gen/">
+    <Project Path="tools/apidoc-gen/ReqIFSharp.Sage.ApiGen.Tests/ReqIFSharp.Sage.ApiGen.Tests.csproj" />
+    <Project Path="tools/apidoc-gen/ReqIFSharp.Sage.ApiGen/ReqIFSharp.Sage.ApiGen.csproj" />
+  </Folder>
+</Solution>
