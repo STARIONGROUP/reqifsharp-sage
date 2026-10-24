@@ -364,3 +364,8 @@ __pycache__/
 *.egg-info/
 /tools/spec-extract/.venv/
 /tools/spec-extract/dist/
+
+##########################################
+# Claude Code local agent memory (per machine, not shared)
+##########################################
+/.claude/agent-memory-local/
